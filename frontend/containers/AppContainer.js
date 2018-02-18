@@ -1,13 +1,25 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+// Components
 import Title from '../components/Title';
+import NotFound from '../components/NotFound';
+
 
 const AppContainer = ({ name }) => {
     return (
-        <div>
-            <Title name={name} />
-        </div>
+      <div>
+        <BrowserRouter>
+          <div>
+            <Switch>
+              <Route exact path="/" render={() => <Title name={name} />}/>
+              <Route path="/" component={ NotFound }/>
+            </Switch>
+          </div>
+        </BrowserRouter>
+      </div>
     );
 };
 
@@ -22,8 +34,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (/* dispatch */) => {
-    return {
-    };
+    return {};
 };
 
 export default connect(
